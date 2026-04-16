@@ -1,4 +1,4 @@
-# small-homelab
+# Mini Cybersecurity Homelab
 
 A personal homelab built entirely on existing hardware: a MacBook running VMware Fusion Pro and a Windows laptop running VMware Workstation Pro. The environment is connected using Tailscale to work around NAT constraints and simulate a multi-network setup.
 
