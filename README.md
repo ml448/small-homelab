@@ -24,6 +24,27 @@ This lab is designed on a **student budget**, focusing on learning the full atta
 
 > The two machines are connected via Tailscale, enabling cross-host communication without modifying local network infrastructure.
 
+## Monitoring Stack
+The detection layer runs [Network Monitoring System](https://github.com/ml448/network-monitoring-dash) — a custom FastAPI + InfluxDB + Grafana pipeline deployed via Docker Compose on the Ubuntu Server VM.
+
+---
+
+## Network
+| Segment | Subnet | Purpose |
+|---|---|---|
+| LAN (vmnet2) | 192.168.94.0/24 | Kali, Monitoring VM |
+| DMZ (vmnet3) | 192.168.95.0/24 | Metasploitable (isolated target) |
+| Tailscale | 100.x.x.x | Cross-host connectivity |
+
+---
+## VMs
+| VM | RAM | Network | Role |
+|---|---|---|---|
+| pfSense | 1GB | NAT, vmnet2, vmnet3 | Firewall, NAT, DHCP, Suricata IDS |
+| Kali | 3.5GB | vmnet2 | Attacker |
+| Ubuntu Server | 2GB | vmnet2, bridged | Monitoring stack |
+| Metasploitable | 512MB | vmnet3 | Vulnerable target |
+
 ---
 
 ## Design Approach
